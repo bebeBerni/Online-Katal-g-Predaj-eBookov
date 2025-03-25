@@ -56,23 +56,10 @@
 
                             <h6 class="site-footer-title mt-5 mb-3">Social</h6>
 
-                            <ul class="social-icon mb-4">
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-instagram"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-twitter"></a>
-                                </li>
-                                
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-facebook"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-whatsapp"></a>
-                                </li>
-                            </ul>
+                            <?php
+                                require('_inc/get_socials.php');
+                                echo get_socials();
+                            ?>
 
                             <p class="copyright-text">Copyright © 2048 ebook company
                             <br><br><a rel="nofollow" href="https://templatemo.com" target="_blank">designed by templatemo</a></p>

@@ -15,7 +15,7 @@
                     <div class="d-lg-none ms-auto me-3">
                         <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                             <i class="btn-icon bi-cloud-download"></i>
-                            <span>Download</span><!-- duplicated another one below for mobile -->
+                            <span>Download</span>
                         </a>
                     </div>
     
@@ -24,32 +24,16 @@
                     </button>
     
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-auto me-lg-4">
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_1">Home</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_2">The Book</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_3">Author</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_4">Reviews</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_5">Contact</a>
-                            </li>
-                        </ul>
+                        
+                        <?php
+                            require ('_inc/functions.php');
+                            echo getMenu();
+                        ?>
 
                         <div class="d-none d-lg-block">
                             <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
-                                <span>Download</span><!-- duplicated above one for mobile -->
+                                <span>Download</span>
                             </a>
                         </div>
                     </div>
@@ -153,19 +137,12 @@
                         </div>
 
                         <div class="col-lg-4 col-12">
-                            <nav id="navbar-example3" class="h-100 flex-column align-items-stretch">
-                                <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link smoothscroll" href="#item-1">Introduction</a>
 
-                                    <a class="nav-link smoothscroll" href="#item-2">Chapter 1: <strong>Win back your time</strong></a>
+                        <?php
+                            require ('_inc/get_sidebar.php');
+                            echo get_sidebar();
+                        ?>
 
-                                    <a class="nav-link smoothscroll" href="#item-3">Chapter 2: <strong>Work less, do more</strong></a>
-
-                                    <a class="nav-link smoothscroll" href="#item-4">Chapter 3: <strong>Delegate</strong></a>
-
-                                    <a class="nav-link smoothscroll" href="#item-5">Chapter 4: <strong>Habits</strong></a>
-                                </nav>
-                            </nav>
                         </div>
 
                         <div class="col-lg-8 col-12">
