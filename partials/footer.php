@@ -3,7 +3,7 @@
                     <div class="row">
 
                         <div class="col-lg-5 col-12 mx-auto">
-                            <form class="custom-form ebook-download-form bg-white shadow" action="#" method="post" role="form">
+                            <form class="custom-form ebook-download-form bg-white shadow" action="thankyou.php" method="post" role="form">
                                 <div class="text-center mb-5">
                                     <h2 class="mb-1">Get your free ebook</h2>
                                 </div>
