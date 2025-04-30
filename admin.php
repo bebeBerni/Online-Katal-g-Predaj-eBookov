@@ -1,5 +1,8 @@
 <?php 
     include('partials/header.php');
+    require_once ('_inc/classes/Database.php');
+    require_once ('_inc/classes/Review.php');
+
 ?>
     <body>
 

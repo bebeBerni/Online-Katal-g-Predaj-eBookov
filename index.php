@@ -1,5 +1,6 @@
 <?php 
     include('partials/header.php');
+    require_once ('_inc/classes/Menu.php');
 ?>
     <body>
 
@@ -26,7 +27,6 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         
                         <?php
-                            require_once '_inc/Menu.php';
                             echo Menu::getMenu();
                         ?>
 
@@ -139,7 +139,6 @@
                         <div class="col-lg-4 col-12">
 
                         <?php
-                            require_once '_inc/Menu.php';
                             echo Menu::getSidebar();
                         ?>
 

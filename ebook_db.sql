@@ -29,18 +29,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ebook_db`.`ebooks`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ebook_db`.`ebooks` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(50) NOT NULL,
-  `author` VARCHAR(50) NOT NULL,
-  `price` DECIMAL NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `ebook_db`.`reviews`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ebook_db`.`reviews` (
@@ -48,7 +36,18 @@ CREATE TABLE IF NOT EXISTS `ebook_db`.`reviews` (
   `name` VARCHAR(50) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `message` VARCHAR(250) NOT NULL,
-  `idebooks` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ebook_db`.`ebooks`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ebook_db`.`ebooks` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(50) NOT NULL,
+  `author` VARCHAR(50) NOT NULL,
+  `price` DECIMAL NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

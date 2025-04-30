@@ -1,16 +1,41 @@
+<?php
+require_once ('_inc/classes/Database.php');
+require_once ('_inc/classes/Review.php');
+require_once ('_inc/classes/Menu.php');
+
+$db = new Database();
+$review = new Review($db);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    if ($name && $email && $message) {
+        if ($review->create($name, $email, $message)) {
+            header("Location: thankyou.php");
+            exit;
+        } else {
+            echo "<p>Error saving your review. Please try again.</p>";
+        }
+    } else {
+        echo "<p>All fields are required.</p>";
+    }
+}
+?>
 <section class="contact-section section-padding" id="section_5">
                 <div class="container">
                     <div class="row">
 
                         <div class="col-lg-5 col-12 mx-auto">
-                            <form class="custom-form ebook-download-form bg-white shadow" action="thankyou.php" method="post" role="form">
+                            <form class="custom-form ebook-download-form bg-white shadow" method="POST" role="form">
                                 <div class="text-center mb-5">
                                     <h2 class="mb-1">Rate your ebook</h2>
                                 </div>
 
                                 <div class="ebook-download-form-body">
                                     <div class="input-group mb-4">
-                                        <input type="text" name="ebook-form-name" id="ebook-form-name" class="form-control" aria-label="ebook-form-name" aria-describedby="basic-addon1" placeholder="Your Name" required>
+                                        <input type="text" name="name" class="form-control" aria-label="ebook-form-name" aria-describedby="basic-addon1" placeholder="Your Name" required>
 
                                         <span class="input-group-text" id="basic-addon1">
                                             <i class="custom-form-icon bi-person"></i>
@@ -18,7 +43,7 @@
                                     </div>
 
                                     <div class="input-group mb-4">
-                                        <input type="email" name="ebook-email" id="ebook-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="your@company.com" aria-label="ebook-form-email" aria-describedby="basic-addon2" required="">
+                                        <input type="email" name="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="your@company.com" aria-label="ebook-form-email" aria-describedby="basic-addon2" required="">
 
                                         <span class="input-group-text" id="basic-addon2">
                                             <i class="custom-form-icon bi-envelope"></i>
@@ -26,7 +51,7 @@
                                     </div>
 
                                     <div class="input-group mb-4">
-                                            <textarea name="ebook-message" id="ebook-message" class="form-control" rows="2" placeholder="Your Message" aria-label="ebook-form-message" aria-describedby="basic-addon3"></textarea>
+                                            <textarea name="message" class="form-control" rows="2" placeholder="Your Message" aria-label="ebook-form-message" aria-describedby="basic-addon3"></textarea>
                                         <span class="input-group-text" id="basic-addon3">
                                             <i class="custom-form-icon bi-chat-text"></i>
                                         </span>
@@ -63,8 +88,7 @@
 
                             <h6 class="site-footer-title mt-5 mb-3">Social</h6>
 
-                        <?php
-                            require_once '_inc/Menu.php';
+                        <?php   
                             echo Menu::getSocials();
                         ?>
 

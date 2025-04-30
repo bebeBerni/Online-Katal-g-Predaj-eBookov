@@ -19,17 +19,17 @@
 
                     <?php
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $contact_name = $_POST['ebook-form-name'];
+                        $contact_name = $_POST['name'];
 
                         if (empty($contact_name)) {
-                        echo "";
+                        echo "Thank you for your review!";
                         } else {
-                            echo '<h1 class="text-white mb-4">Ďakujeme ' . $contact_name . '!</h1>';
+                            echo '<h1 class="text-white mb-4">Thank you ' . $contact_name . '!</h1>';
                         }
                  
                         }  
                     ?>
-                            <p class="text-white">Vaša požiadavka bola prijatá. Vážíme si váš záujem!</p>
+                            <p class="text-white">Vaša recenzia bola prijatá. Vážíme si váš záujem!</p>
                             <a href="index.php" class="btn custom-btn mt-1">Späť na hlavnú stránku</a>
                         </div>
                     </div>
