@@ -5,29 +5,16 @@ require_once ('_inc/classes/Review.php');
 $db = new Database();
 $review = new Review($db);
 
-
-// Spracovanie úpravy recenzie
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_review'])) {
-    $id = $_POST['id'];
+// Spracovanie vytvorenia novej recenzie
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_review'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $message = $_POST['message'];
 
-    if ($review->edit($id, $name, $email, $message)) {
-        $successMessage = "Review updated successfully!";
+    if ($review->create($name, $email, $message)) {
+        $successMessage = "Review created successfully!";
     } else {
-        $errorMessage = "Failed to update review.";
-    }
-}
-
-// Spracovanie odstránenia recenzie
-if (isset($_GET['delete_id'])) {
-    $deleteId = $_GET['delete_id'];
-
-    if ($review->destroy($deleteId)) {
-        $successMessage = "Review deleted successfully!";
-    } else {
-        $errorMessage = "Failed to delete review.";
+        $errorMessage = "Failed to create review.";
     }
 }
 
@@ -48,10 +35,8 @@ $reviews = $review->index();
         <h1 class="mb-4">Manage Reviews</h1>
         
         <div class="mb-4">
-            <a href="admin.php" class="btn btn-secondary">Back to Admin Panel</a>
+            <a href="manage_reviews.php" class="btn btn-secondary">Back to Manage Reviews</a>
         </div>
-
-        <a href="create_review.php" class="btn btn-success">Create New Review</a>
 
         <?php if (isset($successMessage)): ?>
             <div class="alert alert-success"><?php echo $successMessage; ?></div>
@@ -61,6 +46,26 @@ $reviews = $review->index();
             <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
         <?php endif; ?>
 
+        <div class="mt-5">
+            <h2>Create New Review</h2>
+            <form method="POST" action="">
+                <div class="mb-3">
+                    <label for="create-name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="create-name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="create-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="create-email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="create-message" class="form-label">Message</label>
+                    <textarea class="form-control" id="create-message" name="message" rows="3" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" name="create_review" class="btn btn-primary">Create Review</button>
+            </form>
+        </div>
+
+        <!-- Tabuľka recenzií -->
         <table class="table table-bordered mt-5">
             <thead>
                 <tr>
@@ -79,7 +84,6 @@ $reviews = $review->index();
                         <td><?php echo htmlspecialchars($r['email']); ?></td>
                         <td><?php echo htmlspecialchars($r['message']); ?></td>
                         <td>
-                            <a href="edit_review.php?id=<?php echo $r['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
                             <a href="manage_reviews.php?delete_id=<?php echo $r['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this review?')">Delete</a>
                         </td>
                     </tr>

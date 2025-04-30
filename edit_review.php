@@ -5,8 +5,6 @@ require_once ('_inc/classes/Review.php');
 $db = new Database();
 $review = new Review($db);
 
-
-// Spracovanie úpravy recenzie
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_review'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
@@ -20,21 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_review'])) {
     }
 }
 
-// Spracovanie odstránenia recenzie
-if (isset($_GET['delete_id'])) {
-    $deleteId = $_GET['delete_id'];
-
-    if ($review->destroy($deleteId)) {
-        $successMessage = "Review deleted successfully!";
-    } else {
-        $errorMessage = "Failed to delete review.";
-    }
-}
-
-// Načítanie všetkých recenzií
 $reviews = $review->index();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,13 +31,11 @@ $reviews = $review->index();
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Manage Reviews</h1>
-        
+
         <div class="mb-4">
-            <a href="admin.php" class="btn btn-secondary">Back to Admin Panel</a>
+            <a href="manage_reviews.php" class="btn btn-secondary">Back to Manage Reviews</a>
         </div>
-
-        <a href="create_review.php" class="btn btn-success">Create New Review</a>
-
+    
         <?php if (isset($successMessage)): ?>
             <div class="alert alert-success"><?php echo $successMessage; ?></div>
         <?php endif; ?>
@@ -60,6 +43,7 @@ $reviews = $review->index();
         <?php if (isset($errorMessage)): ?>
             <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
         <?php endif; ?>
+
 
         <table class="table table-bordered mt-5">
             <thead>
@@ -79,13 +63,35 @@ $reviews = $review->index();
                         <td><?php echo htmlspecialchars($r['email']); ?></td>
                         <td><?php echo htmlspecialchars($r['message']); ?></td>
                         <td>
-                            <a href="edit_review.php?id=<?php echo $r['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
+                            <button class="btn btn-primary btn-sm" onclick="editReview(<?php echo htmlspecialchars(json_encode($r)); ?>)">Edit</button>
                             <a href="manage_reviews.php?delete_id=<?php echo $r['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this review?')">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+
+        <!-- Formulár na úpravu recenzie -->
+        <div class="mt-5">
+            <h2>Edit Review</h2>
+            <form method="POST" action="">
+                <input type="hidden" name="id" id="edit-id">
+                <div class="mb-3">
+                    <label for="edit-name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="edit-name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="edit-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="edit-email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="edit-message" class="form-label">Message</label>
+                    <textarea class="form-control" id="edit-message" name="message" rows="3" required></textarea>
+                </div>
+                <button type="submit" name="edit_review" class="btn btn-success">Save Changes</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         function editReview(review) {

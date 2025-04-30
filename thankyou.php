@@ -16,19 +16,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 col-12 mx-auto">
-
-                    <?php
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        $contact_name = $_POST['name'];
-
-                        if (empty($contact_name)) {
-                        echo "Thank you for your review!";
-                        } else {
-                            echo '<h1 class="text-white mb-4">Thank you ' . $contact_name . '!</h1>';
-                        }
-                 
-                        }  
-                    ?>
+                        <h1 class="text-white mb-4">Ďakujeme!</h1>
                             <p class="text-white">Vaša recenzia bola prijatá. Vážíme si váš záujem!</p>
                             <a href="index.php" class="btn custom-btn mt-1">Späť na hlavnú stránku</a>
                         </div>
