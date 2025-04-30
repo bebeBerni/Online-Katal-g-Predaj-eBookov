@@ -26,8 +26,8 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         
                         <?php
-                            require ('_inc/functions.php');
-                            echo getMenu();
+                            require_once '_inc/Menu.php';
+                            echo Menu::getMenu();
                         ?>
 
                         <div class="d-none d-lg-block">
@@ -139,8 +139,8 @@
                         <div class="col-lg-4 col-12">
 
                         <?php
-                            require ('_inc/get_sidebar.php');
-                            echo get_sidebar();
+                            require_once '_inc/Menu.php';
+                            echo Menu::getSidebar();
                         ?>
 
                         </div>

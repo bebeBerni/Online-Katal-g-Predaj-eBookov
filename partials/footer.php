@@ -56,10 +56,10 @@
 
                             <h6 class="site-footer-title mt-5 mb-3">Social</h6>
 
-                            <?php
-                                require('_inc/get_socials.php');
-                                echo get_socials();
-                            ?>
+                        <?php
+                            require_once '_inc/Menu.php';
+                            echo Menu::getSocials();
+                        ?>
 
                             <p class="copyright-text">Copyright © 2048 ebook company
                             <br><br><a rel="nofollow" href="https://templatemo.com" target="_blank">designed by templatemo</a></p>
