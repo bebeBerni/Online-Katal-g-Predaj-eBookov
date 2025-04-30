@@ -5,7 +5,7 @@
                         <div class="col-lg-5 col-12 mx-auto">
                             <form class="custom-form ebook-download-form bg-white shadow" action="thankyou.php" method="post" role="form">
                                 <div class="text-center mb-5">
-                                    <h2 class="mb-1">Get your free ebook</h2>
+                                    <h2 class="mb-1">Rate your ebook</h2>
                                 </div>
 
                                 <div class="ebook-download-form-body">
@@ -25,8 +25,15 @@
                                         </span>
                                     </div>
 
+                                    <div class="input-group mb-4">
+                                            <textarea name="ebook-message" id="ebook-message" class="form-control" rows="2" placeholder="Your Message" aria-label="ebook-form-message" aria-describedby="basic-addon3"></textarea>
+                                        <span class="input-group-text" id="basic-addon3">
+                                            <i class="custom-form-icon bi-chat-text"></i>
+                                        </span>
+                                    </div>
+
                                     <div class="col-lg-8 col-md-10 col-8 mx-auto">
-                                        <button type="submit" class="form-control">Download ebook</button>
+                                        <button type="submit" class="form-control">Rate ebook</button>
                                     </div>
                                 </div>
                             </form>
