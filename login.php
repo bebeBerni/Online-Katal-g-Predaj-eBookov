@@ -75,4 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </section>
     </main>
+    <?php
+        echo '<footer style="background-color: #f8c471; padding: 20px; text-align: center; color: white; margin-top: 30px;">';
+        echo '<p>&copy; 2025 Ebook Platform. All rights reserved.</p>';
+        echo '</footer>';
+    ?>
 </body>

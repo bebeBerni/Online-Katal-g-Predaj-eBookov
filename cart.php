@@ -107,8 +107,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_cart'])) 
                 <div class="mt-4">
                     <a href="user_dashboard.php" class="btn btn-primary">Back to Dashboard</a>
                 </div>
-                
+
             <?php endif; ?>
         </section>
     </main>
+    <?php
+        echo '<footer style="background-color: #f8c471; padding: 20px; text-align: center; color: white; margin-top: 20px;">';
+        echo '<p>&copy; 2025 Ebook Platform. All rights reserved.</p>';
+        echo '</footer>';
+    ?>
 </body>

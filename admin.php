@@ -92,7 +92,7 @@
 
     <?php 
         include('partials/footer.php');
-        echo '<footer style="background-color: orange; padding: 20px; text-align: center; color: white;">';
+        echo '<footer style="background-color: #f8c471; padding: 20px; text-align: center; color: white">';
         echo '© 2025 Ebook Admin Panel';
         echo '</footer>';
     ?>
