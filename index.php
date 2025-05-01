@@ -8,17 +8,10 @@
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="index.php">
                         <i class="navbar-brand-icon bi-book me-2"></i>
                         <span>ebook</span>
                     </a>
-
-                    <div class="d-lg-none ms-auto me-3">
-                        <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                            <i class="btn-icon bi-cloud-download"></i>
-                            <span>Download</span>
-                        </a>
-                    </div>
     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -31,16 +24,15 @@
                         ?>
 
                         <div class="d-none d-lg-block">
-                            <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                            <a href="login.php" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
-                                <span>Download</span>
+                                <span>Log in</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </nav>
             
-
             <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
                 <div class="container">
                     <div class="row">
@@ -71,6 +63,7 @@
             $db = new Database();
             $review = new Review($db);
             
+
             $stmt = $db->getConnection()->prepare("SELECT COUNT(*) as total_reviews FROM reviews");
             $stmt->execute();
             $totalReviews = $stmt->fetch(PDO::FETCH_ASSOC)['total_reviews'];

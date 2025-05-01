@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($name && $email && $message) {
         if ($review->create($name, $email, $message)) {
-            header("Location: thankyou.php");
+            echo "<script>window.location.href = 'thankyou.php';</script>";
             exit;
         } else {
             echo "<p>Error saving your review. Please try again.</p>";
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="row">
 
                         <div class="col-lg-5 col-12 mx-auto">
-                            <form class="custom-form ebook-download-form bg-white shadow" method="POST" role="form">
+                            <form class="custom-form ebook-download-form bg-white shadow" action ="thankyou.php" method="POST" role="form">
                                 <div class="text-center mb-5">
                                     <h2 class="mb-1">Rate your ebook</h2>
                                 </div>
