@@ -1,4 +1,7 @@
 <?php
+
+session_start(); 
+
 require_once('partials/header.php');
 require_once ('_inc/classes/Database.php');
 require_once ('_inc/classes/Authenticate.php');
@@ -11,7 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if ($auth->login($email, $password)) {
-        header('Location: admin.php');
+        if ($auth->getUserRole() === 0) {
+            header('Location: admin.php'); 
+        } else {
+            header('Location: user_dashboard.php'); 
+        }
         exit;
     } else {
         $error = 'Incorrect email or password.';

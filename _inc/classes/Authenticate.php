@@ -6,9 +6,11 @@ class Authenticate {
 
     public function __construct(Database $database) {
         $this->db = $database->getConnection();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start(); 
+        }
     }
 
-    // Prihlásenie používateľa
     public function login($email, $password) {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE email = :email");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -28,26 +30,23 @@ class Authenticate {
         return false;
     }
 
-    // Odhlásenie používateľa
     public function logout() {
-        // Vymazanie všetkých session premenných
-        $_SESSION = array();
-
-        // Ak sa používajú cookies na správu session ID, odstráň ich
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(
-                session_name(),
-                '',
-                time() - 42000,
-                $params["path"],
-                $params["domain"],
-                $params["secure"],
-                $params["httponly"]
-            );
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            $_SESSION = array();
+            if (ini_get("session.use_cookies")) {
+                $params = session_get_cookie_params();
+                setcookie(
+                    session_name(),
+                    '',
+                    time() - 42000,
+                    $params["path"],
+                    $params["domain"],
+                    $params["secure"],
+                    $params["httponly"]
+                );
+            }
+            session_destroy(); // Zrušenie session
         }
-
-        session_destroy();
     }
 
     public function isLoggedIn() {
@@ -61,6 +60,20 @@ class Authenticate {
     public function requireLogin() {
         if (!$this->isLoggedIn()) {
             header("Location: login.php");
+            exit;
+        }
+    }
+
+    public function requireAdmin() {
+        if ($this->getUserRole() !== 0) { 
+            header("Location: admin.php"); 
+            exit;
+        }
+    }
+
+    public function requireUser() {
+        if ($this->getUserRole() !== 1) { 
+            header("Location: user_dashboard.php"); 
             exit;
         }
     }

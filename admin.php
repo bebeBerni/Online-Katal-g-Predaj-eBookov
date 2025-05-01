@@ -2,8 +2,15 @@
     include('partials/header.php');
     require_once ('_inc/classes/Database.php');
     require_once ('_inc/classes/Review.php');
+    require_once ('_inc/classes/Authenticate.php');
+    
+    $db = new Database();
 
-?>
+    $auth = new Authenticate($db);
+    $auth->requireAdmin(); 
+    ?>
+
+    
     <body>
 
         <main>
@@ -40,6 +47,7 @@
                     <div class="row">
 
                         <div class="col-lg-12 col-12 text-center">
+                            <h1  class="text-white mb-4" >Welcome, Admin!</h1>
                             <h6>Welcome to Admin Panel</h6>
                             <h1 class="text-white mb-4">Manage Your Ebook Website</h1>
                         </div>
