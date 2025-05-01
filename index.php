@@ -64,34 +64,42 @@
                 </div>
             </section>
 
-
+            <?php
+            require_once ('_inc/classes/Database.php');
+            require_once ('_inc/classes/Review.php');
+            
+            $db = new Database();
+            $review = new Review($db);
+            
+            $stmt = $db->getConnection()->prepare("SELECT COUNT(*) as total_reviews FROM reviews");
+            $stmt->execute();
+            $totalReviews = $stmt->fetch(PDO::FETCH_ASSOC)['total_reviews'];
+            ?>
+            
             <section class="featured-section">
                 <div class="container">
                     <div class="row">
-
+            
                         <div class="col-lg-8 col-12">
                             <div class="avatar-group d-flex flex-wrap align-items-center">
                                 <img src="images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg" class="img-fluid avatar-image" alt="">
-
                                 <img src="images/avatar/portrait-young-redhead-bearded-male.jpg" class="img-fluid avatar-image avatar-image-left" alt="">
-
                                 <img src="images/avatar/pretty-blonde-woman.jpg" class="img-fluid avatar-image avatar-image-left" alt="">
-
                                 <img src="images/avatar/studio-portrait-emotional-happy-funny-smiling-boyfriend.jpg" class="img-fluid avatar-image avatar-image-left" alt="">
-
+            
                                 <div class="reviews-group mt-3 mt-lg-0">
                                     <strong>4.5</strong>
-
                                     <i class="bi-star-fill"></i>
                                     <i class="bi-star-fill"></i>
                                     <i class="bi-star-fill"></i>
                                     <i class="bi-star-fill"></i>
                                     <i class="bi-star"></i>
-
-                                    <small class="ms-3">2,564 reviews</small>
+            
+                                    <small class="ms-3"><?php echo $totalReviews; ?> reviews</small>
                                 </div>
                             </div>
                         </div>
+            
                     </div>
                 </div>
             </section>
@@ -262,97 +270,32 @@
             <section class="reviews-section section-padding" id="section_4">
                 <div class="container">
                     <div class="row">
-
+            
                         <div class="col-lg-12 col-12 text-center mb-5">
                             <h6>Reviews</h6>
-
                             <h2>What people saying...</h2>
                         </div>
-
-                        <div class="col-lg-4 col-12">
-                            <div class="custom-block d-flex flex-wrap">
-                                <div class="custom-block-image-wrap d-flex flex-column">
-                                    <img src="images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg" class="img-fluid avatar-image" alt="">
-
-                                    <div class="text-center mt-3">
-                                        <span class="text-white">Sandy</span>
-
-                                        <strong class="d-block text-white">Artist</strong>
+            
+                        <?php
+                        require_once ('_inc/classes/Database.php');
+                        require_once ('_inc/classes/Review.php');
+            
+                        $db = new Database();
+                        $review = new Review($db);
+            
+                        $reviews = $review->index();
+            
+                        foreach ($reviews as $r): ?>
+                            <div class="col-lg-4 col-12">
+                                <div class="custom-block d-flex flex-wrap">
+                                    <div class="custom-block-info">
+                                        <h5 class="text-white"><?php echo htmlspecialchars($r['name']); ?></h5>
+                                        <p class="mb-0"><?php echo htmlspecialchars($r['message']); ?></p>
                                     </div>
-                                </div>
-
-                                <div class="custom-block-info">
-                                    <div class="reviews-group mb-3">
-                                        <strong>4.5</strong>
-
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star"></i>
-                                    </div>
-
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12 my-5 my-lg-0">
-                            <div class="custom-block d-flex flex-wrap">
-                                <div class="custom-block-image-wrap d-flex flex-column">
-                                    <img src="images/avatar/portrait-young-redhead-bearded-male.jpg" class="img-fluid avatar-image avatar-image-left" alt="">
-
-                                    <div class="text-center mt-3">
-                                        <span class="text-white">John</span>
-
-                                        <strong class="d-block text-white">Producer</strong>
-                                    </div>
-                                </div>
-
-                                <div class="custom-block-info">
-                                    <div class="reviews-group mb-3">
-                                        <strong>3.5</strong>
-
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star"></i>
-                                        <i class="bi-star"></i>
-                                    </div>
-
-                                    <p class="mb-0">If you need some specific CSS templates, you can Google with keywords such as templatemo one-page, templatemo portfolio, etc.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12">
-                            <div class="custom-block d-flex flex-wrap">
-                                <div class="custom-block-image-wrap d-flex flex-column">
-                                    <img src="images/avatar/pretty-blonde-woman.jpg" class="img-fluid avatar-image" alt="">
-
-                                    <div class="text-center mt-3">
-                                        <span class="text-white">Candy</span>
-
-                                        <strong class="d-block text-white">VP, Design</strong>
-                                    </div>
-                                </div>
-
-                                <div class="custom-block-info">
-                                    <div class="reviews-group mb-3">
-                                        <strong>5</strong>
-
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                    </div>
-
-                                    <p class="mb-0">Please tell your friends about our website that we provide 100% free CSS templates for everyone. Thank you for using our templates.</p>
-                                </div>
-                            </div>
-                        </div>
-
+                        <?php endforeach; ?>
+            
                     </div>
                 </div>
             </section>

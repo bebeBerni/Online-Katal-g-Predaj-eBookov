@@ -5,8 +5,6 @@ require_once ('_inc/classes/Review.php');
 $db = new Database();
 $review = new Review($db);
 
-
-// Spracovanie úpravy recenzie
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_review'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
@@ -20,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_review'])) {
     }
 }
 
-// Spracovanie odstránenia recenzie
 if (isset($_GET['delete_id'])) {
     $deleteId = $_GET['delete_id'];
 
@@ -31,7 +28,6 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
-// Načítanie všetkých recenzií
 $reviews = $review->index();
 ?>
 
