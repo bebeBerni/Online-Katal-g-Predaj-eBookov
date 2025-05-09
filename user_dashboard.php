@@ -6,8 +6,6 @@ require_once ('partials/header.php');
 $db = new Database();
 $auth = new Authenticate($db);
 
-$auth->requireUser();
-
 $stmt = $db->getConnection()->prepare("SELECT * FROM ebooks");
 $stmt->execute();
 $ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);

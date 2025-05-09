@@ -31,26 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
 
         <!-- Navigačná lišta -->
-      <nav class="navbar navbar-expand-lg" style="background-color:rgb(34, 39, 44);">
+        <nav class="navbar navbar-expand-lg" style="background-color:rgb(34, 39, 44);">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
                     <i class="navbar-brand-icon bi-book me-2"></i>
                     <span>ebook</span>
                 </a>
-        
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="collapse navbar-collapse" id="navbarNav">
-        
-                    <div class="d-none d-lg-block ms-auto">
-                        <a href="login.php" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
-                            <i class="btn-icon bi-cloud-download"></i>
-                            <span>Log in</span>
-                        </a>
-                    </div>
-                </div>
             </div>
         </nav>          
 
@@ -73,6 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <button type="submit" class="btn btn-primary">Log In</button>
             </form>
+
+            <div class="mt-4 text-center">
+                <p>Don't have an account?</p>
+                <a href="register.php" class="btn btn-secondary">Sign In/Register</a>
+            </div>
         </section>
     </main>
     <?php

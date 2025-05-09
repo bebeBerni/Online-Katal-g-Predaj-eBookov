@@ -5,7 +5,6 @@ require_once ('_inc/classes/Authenticate.php');
 $db = new Database();
 $auth = new Authenticate($db);
 
-$auth->requireAdmin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
     $name = $_POST['name'];

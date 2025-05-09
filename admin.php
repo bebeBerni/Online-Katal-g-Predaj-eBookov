@@ -7,7 +7,6 @@
     $db = new Database();
 
     $auth = new Authenticate($db);
-    $auth->requireAdmin(); 
     ?>
 
     

@@ -64,18 +64,5 @@ class Authenticate {
         }
     }
 
-    public function requireAdmin() {
-        if ($this->getUserRole() !== 0) { 
-            header("Location: admin.php"); 
-            exit;
-        }
-    }
-
-    public function requireUser() {
-        if ($this->getUserRole() !== 1) { 
-            header("Location: user_dashboard.php"); 
-            exit;
-        }
-    }
 }
 ?>
