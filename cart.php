@@ -6,30 +6,23 @@ require_once ('partials/header.php');
 $db = new Database();
 $auth = new Authenticate($db);
 
-// Len používateľ má prístup
-$auth->requireUser();
-
-// Inicializácia košíka, ak ešte neexistuje
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Načítanie kníh z košíka
 $cartItems = [];
-$totalPrice = 0; // Inicializácia celkovej sumy
+$totalPrice = 0; 
 if (!empty($_SESSION['cart'])) {
     $placeholders = implode(',', array_fill(0, count($_SESSION['cart']), '?'));
     $stmt = $db->getConnection()->prepare("SELECT * FROM ebooks WHERE id IN ($placeholders)");
     $stmt->execute(array_keys($_SESSION['cart']));
     $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Výpočet celkovej sumy
     foreach ($cartItems as $item) {
         $totalPrice += $item['price'];
     }
 }
 
-// Odstránenie knihy z košíka
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_cart'])) {
     $ebookId = $_POST['ebook_id'];
     unset($_SESSION['cart'][$ebookId]);
