@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(':role', $role, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
-                $success = 'Account created successfully! You can now log in.';
+                $success = 'Account created successfully! Redirecting to login page...';
+                header("Refresh: 1; url=login.php");
             } else {
                 $error = 'Failed to create account. Please try again.';
             }
@@ -42,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 
 <body>
     <main>
@@ -98,8 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
     </main>
 
-    <footer style="background-color: #f8c471; padding: 20px; text-align: center; color: white; margin-top: 30px;">
-        <p>&copy; 2025 Ebook Platform. All rights reserved.</p>
-    </footer>
+    <?php
+        echo '<footer style="position: absolute; bottom: 0; width: 100%; background-color: #f8c471; padding: 20px; text-align: center; color: white;">';
+        echo '<p>&copy; 2025 Ebook Platform. All rights reserved.</p>';
+        echo '</footer>';
+    ?>
+    
 </body>
 </html>

@@ -16,9 +16,10 @@ CREATE TABLE IF NOT EXISTS `ebook_db`.`users` (
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(200) NOT NULL,
   `role` INT NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Vytvorenie tabuľky `reviews`
