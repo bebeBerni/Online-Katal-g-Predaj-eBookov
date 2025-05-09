@@ -1,5 +1,4 @@
 <?php
-
 class Authenticate {
 
     private $db;
@@ -53,8 +52,12 @@ class Authenticate {
         return isset($_SESSION['id']);
     }
 
+    public function getUserId() {
+        return $_SESSION['id'] ?? null; 
+    }
+
     public function getUserRole() {
-        return $_SESSION['role'] ?? null;
+        return $_SESSION['role'] ?? null; 
     }
 
     public function requireLogin() {
@@ -63,6 +66,6 @@ class Authenticate {
             exit;
         }
     }
+   }
 
-}
 ?>

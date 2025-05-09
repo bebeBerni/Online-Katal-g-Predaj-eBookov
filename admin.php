@@ -8,7 +8,6 @@
 
     $auth = new Authenticate($db);
     ?>
-
     
     <body>
 
@@ -16,7 +15,7 @@
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="admin.php">
+                    <a class="navbar-brand" href="index.php">
                         <i class="navbar-brand-icon bi-gear me-2"></i>
                         <span>Admin Panel</span>
                     </a>

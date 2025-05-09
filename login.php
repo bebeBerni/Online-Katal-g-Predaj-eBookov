@@ -1,5 +1,4 @@
 <?php
-
 session_start(); 
 
 require_once('partials/header.php');
@@ -9,12 +8,25 @@ require_once ('_inc/classes/Authenticate.php');
 $db = new Database();
 $auth = new Authenticate($db);
 
+// Ak je používateľ už prihlásený, presmerujte ho na príslušnú stránku
+if (isset($_SESSION['user_id'])) {
+    if ($_SESSION['user_role'] === 0) {
+        header('Location: admin.php'); // Presmerovanie pre admina
+    } else {
+        header('Location: user_dashboard.php'); // Presmerovanie pre bežného používateľa
+    }
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
     if ($auth->login($email, $password)) {
-        if ($auth->getUserRole() === 0) {
+        $_SESSION['user_id'] = $auth->getUserId();
+        $_SESSION['user_role'] = $auth->getUserRole();
+
+        if ($_SESSION['user_role'] === 0) {
             header('Location: admin.php'); 
         } else {
             header('Location: user_dashboard.php'); 
@@ -27,9 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <body>
-
     <main>
-
         <!-- Navigačná lišta -->
         <nav class="navbar navbar-expand-lg" style="background-color:rgb(34, 39, 44);">
             <div class="container">
