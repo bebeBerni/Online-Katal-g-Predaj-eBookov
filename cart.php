@@ -1,4 +1,16 @@
 <?php
+$cookie_lifetime = 60 * 60 * 24 * 30; // 30 days
+
+session_set_cookie_params([
+    'lifetime' => $cookie_lifetime,
+    'path' => '/',
+    'secure' => false,       
+    'httponly' => true,
+    'samesite' => 'Lax'      
+]);
+
+session_start();
+
 require_once ('_inc/classes/Authenticate.php');
 require_once ('_inc/classes/Database.php');
 require_once ('partials/header.php');
@@ -7,7 +19,11 @@ $db = new Database();
 $auth = new Authenticate($db);
 
 if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
+    if (isset($_COOKIE['cart'])) {
+        $_SESSION['cart'] = json_decode($_COOKIE['cart'], true);
+    } else {
+        $_SESSION['cart'] = [];
+    }
 }
 
 $cartItems = [];
@@ -26,9 +42,12 @@ if (!empty($_SESSION['cart'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_cart'])) {
     $ebookId = $_POST['ebook_id'];
     unset($_SESSION['cart'][$ebookId]);
+    setcookie('cart', json_encode($_SESSION['cart']), time() + $cookie_lifetime, "/"); // Aktualizácia cookies
     header("Location: cart.php");
     exit;
 }
+
+setcookie('cart', json_encode($_SESSION['cart']), time() + $cookie_lifetime, "/");
 ?>
 
 <body>
@@ -105,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_from_cart'])) 
         </section>
     </main>
     <?php
-        echo '<footer style="background-color: #f8c471; padding: 20px; text-align: center; color: white; margin-top: 20px;">';
+        echo '<footer style="position: absolute; bottom: 0; width: 100%; background-color: #f8c471; padding: 20px; text-align: center; color: white;">';
         echo '<p>&copy; 2025 Ebook Platform. All rights reserved.</p>';
         echo '</footer>';
     ?>

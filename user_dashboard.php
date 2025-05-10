@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </nav>
 
         <!-- Obsah stránky -->
-        <div style="height: 100px;"></div>
         <section class="container mt-5">
             <h1 class="mb-4">Welcome, User!</h1>
             <p>This is your dashboard. Below is the list of available ebooks:</p>
@@ -97,8 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
     </main>
     <?php
-        include('partials/footer.php');
-        echo '<footer style="bottom: 0; width: 100%; background-color: #f8c471; padding: 20px; text-align: center; color: white;">';
+        echo '<footer style="position: absolute; bottom: 0; width: 100%; background-color: #f8c471; padding: 20px; text-align: center; color: white;">';
         echo '<p>&copy; 2025 Ebook Platform. All rights reserved.</p>';
         echo '</footer>';
     ?>

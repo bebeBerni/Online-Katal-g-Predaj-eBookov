@@ -7,9 +7,9 @@ $db = new Database();
 $review = new Review($db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
+    $name = $_POST['name'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $message = $_POST['message'] ?? null;
 
     if ($name && $email && $message) {
         if ($review->create($name, $email, $message)) {
